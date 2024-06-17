@@ -1,0 +1,48 @@
+- name: Install Python build dependencies
+  apt:
+    name:
+      - make
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - wget
+      - curl
+      - llvm
+      - git
+      - libncurses5-dev
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libffi-dev
+      - liblzma-dev
+    update_cache: true
+
+- name: Install pyenv
+  shell: curl https://pyenv.run | bash
+
+- name: Add pyenv to PATH in .bashrc
+  shell: |
+        echo 'export PATH="/root/.pyenv/bin:$PATH"' >> /root/.bashrc
+        echo 'eval "$(pyenv init --path)"' >> /root/.bashrc
+        echo 'eval "$(pyenv init -)"' >> /root/.bashrc
+
+
+- name: Apply the changes to the current session
+  shell: . /root/.bashrc
+  args:
+    executable: /bin/bash
+
+- name: Create a directory named python3.7
+  file:
+    path: /root/python3.7
+    state: directory
+    mode: '0644'
+
+- name: Create a directory named python3.12
+  file:
+    path: /root/python3.12
+    state: directory
+    mode: '0644'
