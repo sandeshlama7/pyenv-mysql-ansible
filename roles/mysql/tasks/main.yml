@@ -13,15 +13,15 @@
     state: started
     enabled: yes
 
-# - name: creating mysql user
-#   mysql_user:
-#     name: "Test-User"
-#     password: "Testpassword"
-#     priv: '*.*:ALL'
-#     host: '%'
-#     state: present
+- name: creating mysql user
+  mysql_user:
+    name: "Test-User"
+    password: "Testpassword"
+    priv: '*.*:ALL'
+    host: '%'
+    state: present
 
-# - name: Creating DB
-#   mysql_db:
-#     name: "TestDB"
-#     state: present
+- name: Creating DB
+  mysql_db:
+    name: "TestDB"
+    state: present
