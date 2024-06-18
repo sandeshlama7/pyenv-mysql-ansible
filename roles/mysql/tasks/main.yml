@@ -1,0 +1,27 @@
+- name: Install MySql
+  apt:
+    name:
+      - mysql-server
+      - mysql-client
+      - python3-mysqldb
+    state: present
+    update_cache: yes
+
+- name: Start and enable MySQL server
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+
+- name: creating mysql user
+  mysql_user:
+    name: "Test-User"
+    password: "Testpassword"
+    priv: '*.*:ALL'
+    host: '%'
+    state: present
+
+- name: Creating DB
+  mysql_db:
+    name: "TestDB"
+    state: present
