@@ -48,24 +48,26 @@
     state: directory
     mode: '0644'
 
-- name: Install python3.7.0
+- name: Install python3.7
   shell: |
-    export PATH="/root/.pyenv/bin:$PATH"
-    eval "$(pyenv init --path)"
-    eval "$(pyenv init -)"
-    pyenv install 3.7.0
-    pyenv install 3.12.0
+    /root/.pyenv/bin/pyenv install 3.7.4
+  args:
+    executable: /bin/bash
+
+- name: Install python3.12
+  shell: |
+    /root/.pyenv/bin/pyenv install 3.12.4
   args:
     executable: /bin/bash
 
 - name: Set local Python version to 3.7.0 in /root/python3.7
-  shell: pyenv local 3.7.0
+  shell: /root/.pyenv/bin/pyenv local 3.7.4
   args:
     chdir: /root/python3.7
     executable: /bin/bash
 
-- name: Set local Python version to 3.12.0 in /root/python3.12
-  shell: pyenv local 3.12.0
+- name: Set local Python version to 3.12 in /root/python3.12
+  shell: /root/.pyenv/bin/pyenv local 3.12.4
   args:
     chdir: /root/python3.12
     executable: /bin/bash
